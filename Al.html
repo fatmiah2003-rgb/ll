@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>التشكيل بالطين – الصف الأول</title>
+<style>
+:root{--bg:#fdf6ee;--card:#fff;--ink:#3a2a1f;--pur:#7b3fa0;--grn:#3f9b57;--org:#c0702f;--soft:#f3e7da;--bad:#d44;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#241b2e;--card:#30263d;--ink:#f6eefb;--soft:#43364f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#241b2e;--card:#30263d;--ink:#f6eefb;--soft:#43364f;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Tajawal","Segoe UI",Tahoma,Arial,sans-serif;font-size:21px;line-height:1.8}
+button,input,textarea,select{font:inherit;color:inherit}
+.btn{border:0;border-radius:18px;padding:10px 18px;background:var(--pur);color:#fff;font-weight:700;cursor:pointer;min-height:52px;margin:4px}
+.btn.g{background:var(--grn)}.btn.o{background:var(--org)}.btn.s{background:var(--soft);color:var(--ink)}
+.card{background:var(--card);border-radius:24px;padding:16px;margin:12px 0;box-shadow:0 4px 14px rgba(0,0,0,.1);animation:pop .4s}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes fl{50%{transform:translateY(-10px)}}
+@keyframes sh{25%{transform:translateX(8px)}75%{transform:translateX(-8px)}}
+@keyframes fly{to{transform:translateY(-160px) rotate(90deg);opacity:0}}
+.big{font-size:3.2em;text-align:center;animation:fl 3s infinite}
+h1,h2{color:var(--pur);margin:.2em 0}
+#wel{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px;background:linear-gradient(160deg,#f7d9b8,#e9d4f5)}
+#wel .card{max-width:520px;width:100%;text-align:center}
+input,textarea,select{width:100%;padding:12px;border-radius:14px;border:3px solid var(--soft);background:var(--card);margin:6px 0}
+#app{display:none}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:linear-gradient(135deg,var(--org),var(--pur));color:#fff;display:flex;align-items:center;justify-content:space-between;gap:6px;padding:6px 10px;flex-wrap:wrap}
+header b{font-size:.9em}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:8px 10px}
+.tabs button{border:0;border-radius:16px;padding:8px 14px;background:var(--soft);color:var(--ink);white-space:nowrap;cursor:pointer;min-height:48px;font-weight:700}
+.tabs button.on{background:var(--pur);color:#fff}
+main{max-width:820px;margin:0 auto;padding:0 12px 60px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tile{background:var(--soft);border:0;border-radius:20px;padding:14px;text-align:center;cursor:pointer;font-weight:700;min-height:90px}
+.tile:active,.opt:active{transform:scale(1.06)}
+.opts{display:grid;gap:10px;margin:10px 0}
+.opts.img{grid-template-columns:repeat(3,1fr)}.opts.img .opt{font-size:2.6em}
+.opt{border:3px solid var(--soft);background:var(--card);border-radius:18px;padding:12px;min-height:58px;cursor:pointer;text-align:center}
+.opt.ok{background:#c9ecd2;border-color:var(--grn);color:#14502a}.opt.no{background:#fbd3d3;border-color:var(--bad);color:#6a1414;animation:sh .4s}.opt.sel{background:var(--soft);border-color:var(--pur)}
+.q{font-weight:700}
+.bar{height:22px;background:var(--soft);border-radius:12px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--grn),var(--org));width:0;transition:width .8s}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.zone{min-height:120px;border:4px dashed var(--pur);border-radius:18px;padding:8px;text-align:center}
+.drag{display:inline-block;margin:4px;padding:8px 12px;border-radius:14px;background:var(--soft);touch-action:none;cursor:grab;user-select:none}
+.ghost{position:fixed;z-index:99;pointer-events:none;box-shadow:0 6px 16px rgba(0,0,0,.3)}
+#wheel{width:230px;height:230px;border-radius:50%;margin:14px auto;position:relative;transition:transform 2s cubic-bezier(.2,.8,.2,1);background:conic-gradient(#f4b942 0 60deg,#e0449b 0 120deg,#3f9b57 0 180deg,#4a90d9 0 240deg,#7b3fa0 0 300deg,#e8643c 0 360deg);border:6px solid var(--ink)}
+#wheel span{position:absolute;left:50%;top:50%;font-size:1.8em;margin:-16px;transform-origin:50% 50%}
+.ptr{text-align:center;font-size:2em;margin-bottom:-26px}
+.fcard{min-height:90px;display:flex;align-items:center;justify-content:center;text-align:center}
+.mem{font-size:2.2em;min-height:76px}
+.badge{text-align:center;padding:10px;border-radius:18px;background:var(--soft)}.badge.off{filter:grayscale(1);opacity:.5}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);background:var(--ink);color:var(--bg);padding:12px 20px;border-radius:20px;opacity:0;transition:.3s;z-index:60;text-align:center;max-width:92vw;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.toast.good{background:var(--grn);color:#fff}
+.cf{position:fixed;z-index:70;font-size:1.6em;pointer-events:none;animation:fly 1.2s forwards}
+#laser{position:fixed;width:30px;height:30px;margin:-15px;border-radius:50%;background:radial-gradient(#fff 10%,#f00 45%,rgba(255,0,0,.2) 75%);box-shadow:0 0 20px 8px rgba(255,0,0,.6);pointer-events:none;z-index:80;display:none}
+.row{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+small{opacity:.85}
+</style>
+</head>
+<body>
+<div id="wel">
+<div class="card">
+<div class="big">🌟</div>
+<h1>مرحباً يا بطلة!</h1>
+<p>🪨 درس «التشكيل بالطين» 🏺</p>
+<input id="n" placeholder="اسم الطالبة" autocomplete="off" oninput="hi()">
+<input id="c" placeholder="الفصل (مثال: ١/أ)">
+<input id="d" placeholder="اليوم والتاريخ">
+<p id="hm" style="min-height:1.8em;color:var(--grn);font-weight:700"></p>
+<button class="btn" data-do="start">🚀 ابدئي رحلة التعلم</button><div id="tcw"></div><p><small id="dbs"></small></p>
+</div>
+</div>
+<div id="app">
+<header><b>🪨 التشكيل بالطين</b><b id="chip"></b><small id="sv"></small><span><b>⭐ <span id="pts">0</span></b> <button class="btn s" style="min-height:42px;padding:4px 12px" data-go="home">🏠 الرئيسية</button></span></header>
+<div class="tabs" id="tabs"></div>
+<main id="v"></main>
+</div>
+<div class="toast" id="toast"></div>
+<div id="laser"></div>
+<script>
+var DB=null,UID=null,TCH=0,sT=0,TU=null,TR=[];
+var S={raw:'',rc:'',rd:'',name:'',cls:'',date:'',pts:0,got:{},seen:{},att:{},act:{},hw:null,hwT:0,qz:null,log:[],ok:0,no:0,bd:{}},cur='home',si=0,las=0,tot=0;
+var $=function(i){return document.getElementById(i)};
+var esc=function(s){return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+var TB=[['home','🏠 الرئيسية'],['learn','📚 الشرح'],['tasks','🎯 المهام'],['hw','📝 الواجبات'],['acts','🎮 الأنشطة'],['quiz','🧠 الاختبار'],['res','🏆 نتيجتي'],['fbk','💡 التغذية الراجعة'],['prog','📊 تقدمي']];
+var TF=['✅ صح','❌ خطأ'],STEPS=['🪨 تتفتّت الصخور إلى تُربة','🧹 تُنقّى التربة من الشوائب','💧 تُمزج بالماء','🟤 تصبح طينة طرية'];
+var LS=[
+['الصخور حولنا','🪨🌈','خلق الله عدداً كبيراً من الصخور، بأحجام وأشكال وألوان مختلفة.','مثال: حصاة صغيرة وصخرة كبيرة.','من خلق كل شيء حولنا؟',['من خلق الصخور؟',['الله سبحانه وتعالى','الإنسان'],0]],
+['الجبال والأودية','⛰️🏜️','بعض الصخور كبيرة، وتتكوّن منها الجبال. وتمتلئ الأودية بالرمال والأحجار الصغيرة.','مثال: جبل عالٍ، ووادٍ فيه رمال.','الجبال تتكوّن من صخور ضخمة.',['ماذا يتكوّن من الصخور الكبيرة؟',['الجبال','الكتب'],0]],
+['أين نشاهد الصخور؟','🌊🏢⚽🏔️','نشاهد الصخور في أماكن كثيرة: البحر، المباني، الميدان، الأودية والجبال.','مثال: صخور عند الأمواج، وحجارة في جدار المبنى.','تذكّري صور نشاط ١ في الكتاب.',['أين نشاهد الأمواج مع الصخور؟',['البحر','المطبخ'],0]],
+['صخور ملوّنة وصخور من الفضاء','🔵🔴🟣☄️','توجد صخور ملوّنة، ونلاحظ الاختلاف في أشكالها وألوانها. وللصخور الفضائية نزور مركز الملك عبدالعزيز التاريخي (المتحف الوطني) في الرياض.','مثال: صخرة من الفضاء وُجدت في صحراء الربع الخالي.','المتحف الوطني في عاصمتنا الرياض.',['أين نشاهد الصخور الفضائية؟',['المتحف الوطني بالرياض','الملعب'],0]],
+['التربة والطينة','🪨➡️🟤💧','بعض الصخور تتفتّت إلى أجزاء صغيرة فتسمّى التُّربة. ونوع منها هو التربة الطينية، تُنقّى من الشوائب وتُمزج بالماء لتصبح طينة طرية.','مثال: تراب ناعم مع ماء يصير طيناً.','نحتاجه للشرب والغسل 💧',['بماذا نمزج التربة الطينية؟',['بالماء','بالزيت'],0]],
+['أدوات التشكيل','🪵🟤🥄','عند تشكيل الصخور نحتاج: لوحاً خشبياً، وقطعة من الطين، وأداة التشكيل (دفرة).','مثال: نضع الطين على اللوح ونشكّله بالدفرة.','اسمها يبدأ بحرف الدال.',['ما أداة التشكيل؟',['الدفرة','المقص'],0]]];
+var DK=[1,3,0,2];
+function hi(){var v=$('n').value.trim();$('hm').textContent=v?'أهلاً بكِ يا '+v+' 🌷':''}
+try{$('d').value=new Date().toLocaleDateString('ar-SA',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}catch(e){}
+function toast(m,g){var t=$('toast');t.innerHTML=m;t.className='toast on'+(g?' good':'');clearTimeout(toast.t);toast.t=setTimeout(function(){t.className='toast'},2400)}
+function boom(){for(var i=0;i<14;i++){var s=document.createElement('span');s.className='cf';s.textContent=['⭐','🎉','✨'][i%3];s.style.left=(15+Math.random()*70)+'%';s.style.top=(40+Math.random()*30)+'%';document.body.appendChild(s);setTimeout(function(x){x.remove()},1300,s)}}
+function fb(ok,hint,key){var m;if(ok){var nw=key&&!S.got[key];if(nw){S.got[key]=1;S.pts++;$('pts').textContent=S.pts}m='🎉 أحسنتِ يا '+S.name+'!'+(nw?'<br>⭐ +1 نقطة':'');S.ok++;boom()}else{m='💡 حاولي مرة أخرى يا بطلة!'+(hint?'<br><small>'+hint+'</small>':'');S.no++}
+S.log.unshift([ok,m.replace(/<[^>]+>/g,' ')]);if(S.log.length>12)S.log.length=12;toast(m,ok);setTimeout(function(){chk();bdg(1);sv()},50)}
+function seenN(){return Object.keys(S.seen).length}
+function actN(){return Object.keys(S.act).length}
+function qPct(){return S.qz&&S.qz.done?Math.round(S.qz.s*10):-1}
+var TS=[['شاهدي مراحل الشرح كلها',function(){return seenN()==6},function(){return seenN()>0}],['أكملي نشاطاً واحداً',function(){return actN()>0},function(){return Object.keys(S.att).length>0}],['سلّمي الواجب',function(){return !!S.hw},function(){return S.hwT}],['أنهي الاختبار',function(){return !!(S.qz&&S.qz.done)},function(){return !!S.qz}]];
+function tst(i){return TS[i][1]()?2:TS[i][2]()?1:0}
+function tdone(){return [0,1,2,3].filter(function(i){return tst(i)==2}).length}
+function chk(){TS.forEach(function(t,i){if(tst(i)==2&&!S.got['t'+i]){S.got['t'+i]=1;S.pts++;$('pts').textContent=S.pts;toast('🎯 أنجزتِ مهمة يا '+S.name+'!<br>⭐ +1 نقطة',1)}})}
+var BD=[['all','🏅','إكمال جميع المهام',function(){return tdone()==4}],['p5','⭐','الحصول على 5 نقاط',function(){return S.pts>=5}],['t90','🏆','الحصول على 90% أو أكثر',function(){return qPct()>=90}],['les','🌟','إكمال جميع أجزاء الدرس',function(){return seenN()==6}]];
+function bdg(n){BD.forEach(function(b){if(b[3]()&&!S.bd[b[0]]){S.bd[b[0]]=1;if(n)setTimeout(function(){toast('🏅 شارة جديدة: '+b[2],1);boom()},1700)}})}
+function pb(l,p){return '<p style="margin:8px 0 2px">'+l+' — '+p+'%</p><div class="bar"><i data-w="'+p+'" style="width:0"></i></div>'}
+function badges(){return '<div class="grid">'+BD.map(function(b){return '<div class="badge'+(b[3]()?'':' off')+'"><div style="font-size:2.2em">'+b[1]+'</div><small>'+b[2]+'</small></div>'}).join('')+'</div>'}
+function allP(){var p=[seenN()/6,tdone()/4,actN()/9,S.hw?1:0,S.qz&&S.qz.done?1:0];return Math.round(p.reduce(function(a,b){return a+b},0)/5*100)}
+function animBars(){setTimeout(function(){document.querySelectorAll('.bar i').forEach(function(i){i.style.width=i.dataset.w+'%'})},0)}
+function go(t){cur=t;chk();bdg(0);document.querySelectorAll('.tabs button').forEach(function(b){b.classList.toggle('on',b.dataset.go===t)});R[t]();window.scrollTo(0,0)}
+function V(h){$('v').innerHTML=h}
+function shuf(n){var a=[],i;for(i=0;i<n;i++)a.push(i);return a.sort(function(x,y){return (x*2+1)%(n+1)-(y*2+1)%(n+1)})}
+function Q(el,it,key,cb,once){el.innerHTML='<p class="q">'+it[0]+'</p><div class="opts'+(it[4]?' img':'')+'"></div>';var o=el.lastChild,hit=0;it[1].forEach(function(t,i){var b=document.createElement('button');b.className='opt';b.innerHTML=t;b.onclick=function(){if(o.dataset.d)return;if(i==it[2]){b.classList.add('ok');o.dataset.d=1;fb(1,'',once?null:key);cb&&cb(!hit)}else{b.classList.add('no');hit=1;fb(0,it[3]);if(once){o.dataset.d=1;o.children[it[2]].classList.add('ok');cb&&cb(false)}}};o.appendChild(b)})}
+function ordr(el,st,cb,key){var n=0,bad=0;el.innerHTML='<p class="q">رتّبي الخطوات بالضغط عليها بالترتيب الصحيح:</p><div class="opts"></div>';var o=el.lastChild;shuf(st.length).forEach(function(i){var b=document.createElement('button');b.className='opt';b.textContent=st[i];b.onclick=function(){if(b.classList.contains('ok'))return;if(i==n){b.classList.add('ok');n++;if(n==st.length){fb(1,'',key);cb(bad)}}else{bad=1;b.classList.add('no');setTimeout(function(){b.classList.remove('no')},400);fb(0,'ابدئي بالصخور، ثم فكّري ماذا يحدث لها.')}};o.appendChild(b)})}
+function conn(el,P,cb,key){var sel=null,n=0,bad=0;el.innerHTML='<p class="q">اضغطي على صورة ثم على الكلمة المناسبة لها:</p><div class="two"><div id="cl"></div><div id="cr"></div></div>';function mk(c,arr,side){arr.forEach(function(i){var b=document.createElement('button');b.className='opt';b.style.width='100%';b.style.margin='4px 0';b.innerHTML=P[i][side];b.onclick=function(){if(b.classList.contains('ok'))return;if(side==0){if(sel)sel.classList.remove('sel');sel=b;b.dataset.i=i;b.classList.add('sel')}else if(sel){if(+sel.dataset.i==i){sel.classList.remove('sel');sel.classList.add('ok');b.classList.add('ok');sel=null;n++;fb(1,'',key?key+n:null);if(n==P.length)cb(bad)}else{bad=1;b.classList.add('no');setTimeout(function(){b.classList.remove('no')},400);fb(0,'انظري جيداً إلى الصورة ثم الكلمة.')}}};$(c).appendChild(b)})}
+mk('cl',P.map(function(p,i){return i}),0);mk('cr',shuf(P.length),1)}
+var PAIR=[['🌊','البحر'],['🏢','المباني'],['⚽','الميدان'],['🏔️','الجبال']];
+var AC=[['mcq','🎯','اختيار الإجابة'],['dd','🧩','سحب وإفلات'],['con','🔗','توصيل'],['ord','🔤','ترتيب'],['tf','✅','صح أو خطأ'],['img','🖼️','اختيار الصورة'],['fc','🎴','بطاقات'],['wh','🎡','عجلة الأسئلة'],['mem','🧠','لعبة الذاكرة']];
+var AI={mcq:[['ماذا نسمّي الأجزاء الصغيرة المتفتتة من الصخور؟',['التُّربة','الماء','الورق'],0,'صخور تتفتّت إلى أجزاء صغيرة…'],['بماذا نمزج التربة الطينية؟',['بالزيت','بالماء','بالهواء'],1,'نحتاجه للشرب 💧'],['أي أداة نستخدمها للتشكيل؟',['المقص','الدفرة','الملعقة'],1,'اسمها يبدأ بحرف الدال']],
+tf:[['الصخور كلها بلون واحد.',TF,1,'انظري إلى الصخور الملونة 🌈'],['الجبال تتكوّن من صخور كبيرة.',TF,0,'تذكّري الشكل ٦١'],['الأودية تمتلئ بالرمال والأحجار الصغيرة.',TF,0,'تذكّري الشكل ٦٢'],['نمزج التربة الطينية بالماء لنصنع الطينة.',TF,0,'نحتاج شيئاً سائلاً 💧']],
+img:[['اختاري صورة الجبل',['🏔️','🌊','🏢'],0,'جبل عالٍ وقمته مرتفعة',1],['اختاري صورة البحر',['⚽','🌊','🏜️'],1,'فيه أمواج وماء',1],['اختاري اللوح الخشبي',['🪵','🍎','🧸'],0,'نضع عليه الطين',1]]};
+var WQ=[['من خلق الصخور؟',['الله سبحانه وتعالى','الإنسان'],0,'خالق كل شيء'],['الصخور الفضائية نشاهدها في…',['المتحف الوطني','المدرسة'],0,'في الرياض'],['أداة التشكيل اسمها…',['الدفرة','الكرة'],0,'تبدأ بالدال'],['التربة تتكوّن من صخور…',['تتفتّت','تطير'],0,'أجزاء صغيرة'],['الأودية تمتلئ بـ…',['الرمال','الثلج'],0,'تذكّري الشكل ٦٢'],['الجبال من صخور…',['كبيرة','صغيرة جداً'],0,'الشكل ٦١']];
+function openAct(k){S.att[k]=1;var a=AC.filter(function(x){return x[0]==k})[0];V('<div class="card"><button class="btn s" data-go="acts">⬅️ الأنشطة</button><h2>'+a[1]+' '+a[2]+'</h2><div id="stage"></div></div>');var el=$('stage');
+function fin(){S.act[k]=1;el.innerHTML='<div class="big">🎉</div><p style="text-align:center">أنهيتِ النشاط يا '+S.name+'!</p><div class="row"><button class="btn" data-do="act" data-a="'+k+'">🔄 إعادة المحاولة</button><button class="btn s" data-go="acts">🎮 أنشطة أخرى</button></div>';chk();bdg(1)}
+if(AI[k]){var i=0;(function nx(){if(i>=AI[k].length)return fin();Q(el,AI[k][i],k+i,function(){setTimeout(function(){i++;nx()},900)})})()}
+else if(k=='con')conn(el,PAIR,fin,'con');
+else if(k=='ord')ordr(el,STEPS,fin,'ord');
+else if(k=='dd'){var it=[['🏔️ صخور كبيرة',0],['🏜️ رمال ناعمة',1],['🪨 قمم عالية',0],['🔸 أحجار صغيرة',1]],ok=0;el.innerHTML='<p class="q">اسحبي كل شيء إلى مكانه:</p><div class="two"><div class="zone" data-z="0">⛰️ الجبال</div><div class="zone" data-z="1">🏜️ الأودية</div></div><div id="pool" style="margin-top:12px"></div>';
+it.forEach(function(x,j){var b=document.createElement('div');b.className='drag';b.textContent=x[0];b.onpointerdown=function(e){e.preventDefault();var g=b.cloneNode(true);g.className='drag ghost';document.body.appendChild(g);var mv=function(ev){g.style.left=ev.clientX-60+'px';g.style.top=ev.clientY-30+'px'};mv(e);var up=function(ev){document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up);g.remove();var t=document.elementFromPoint(ev.clientX,ev.clientY),z=t&&t.closest('.zone');if(!z)return;if(+z.dataset.z==x[1]){z.appendChild(b);b.onpointerdown=null;b.style.background='#c9ecd2';b.style.color='#14502a';fb(1,'','dd'+j);if(++ok==4)fin()}else fb(0,'فكّري: أين نجد هذا الشيء؟')};document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up)};$('pool').appendChild(b)})}
+else if(k=='fc'){var F=[['🪨 الصخور','خلقها الله بأحجام وأشكال وألوان مختلفة'],['🟫 التُّربة','أجزاء صغيرة تتفتّت من الصخور'],['🟤 الطينة','تربة طينية منقّاة تُمزج بالماء'],['🥄 الدفرة','أداة نشكّل بها الطين']],fl={};el.innerHTML='<p class="q">اضغطي على كل بطاقة لتقلبيها:</p><div class="grid" id="fg"></div>';F.forEach(function(f,i){var b=document.createElement('button');b.className='tile fcard';b.textContent=f[0];b.onclick=function(){var s=b.dataset.s=b.dataset.s=='1'?'':'1';b.textContent=s?f[1]:f[0];fl[i]=1;if(Object.keys(fl).length==4&&!el.dataset.f){el.dataset.f=1;fb(1,'','fc');setTimeout(fin,1200)}};$('fg').appendChild(b)})}
+else if(k=='wh'){el.innerHTML='<div class="ptr">🔻</div><div id="wheel"></div><div class="row"><button class="btn o" id="sp">🎡 دوّري العجلة</button></div><div id="wq"></div>';var W=$('wheel');['🪨','🏔️','🌊','🟤','🥄','🏜️'].forEach(function(e,i){var s=document.createElement('span');s.textContent=e;s.style.transform='rotate('+(i*60+30)+'deg) translateY(-82px) rotate('+(-(i*60+30))+'deg)';W.appendChild(s)});
+$('sp').onclick=function(){var i=Math.floor(Math.random()*6);tot+=1440+((330-i*60-tot%360)%360+360)%360;W.style.transform='rotate('+tot+'deg)';$('wq').innerHTML='';setTimeout(function(){Q($('wq'),WQ[i],'wh'+i,function(){S.act.wh=1;chk()})},2100)}}
+else if(k=='mem'){var E=['🪨','🏔️','🌊','🪵'],c=[],fl=[],mt=0,lock=0;el.innerHTML='<p class="q">اقلبي بطاقتين متشابهتين:</p><div class="grid" id="mg" style="grid-template-columns:repeat(4,1fr)"></div>';shuf(8).forEach(function(i){var b=document.createElement('button');b.className='tile mem';b.textContent='❓';b.dataset.e=E[i%4];b.onclick=function(){if(lock||b.dataset.o)return;b.textContent=b.dataset.e;b.dataset.o=1;fl.push(b);if(fl.length==2){lock=1;if(fl[0].dataset.e==fl[1].dataset.e){fl.forEach(function(x){x.style.background='#c9ecd2'});fl=[];lock=0;fb(1,'','mem'+(++mt));if(mt==4)setTimeout(fin,900)}else setTimeout(function(){fl.forEach(function(x){x.textContent='❓';delete x.dataset.o});fl=[];lock=0},900)}};$('mg').appendChild(b)})}}
+var QZ=[['c',['من خلق الصخور؟',['الإنسان','الله سبحانه وتعالى','الرياح'],1,'خالق كل شيء']],['c',['الصخور كلها بلون واحد.',TF,1,'تذكّري الصخور الملونة']],['c',['اختاري صورة الجبل',['🌊','🏢','🏔️'],2,'مرتفع وقمته عالية',1]],['c',['تتكوّن الجبال من صخور…',['كبيرة','صغيرة جداً','ورقية'],0,'الشكل ٦١']],['m',PAIR],['c',['أين نشاهد الصخور الفضائية؟',['في المطبخ','في المتحف الوطني بالرياض','في الملعب'],1,'في عاصمتنا']],['c',['الأجزاء الصغيرة المتفتتة من الصخور تسمى التُّربة.',TF,0,'تذكّري الشكل ٦٦']],['o',STEPS],['c',['أي هذه أداة تشكيل بالطين؟',['المسطرة','المقص','الدفرة'],2,'تبدأ بحرف الدال']],['c',['اختاري اللوح الخشبي',['🍎','🧸','🪵'],2,'نضع عليه الطين',1]]];
+function qrun(){var z=S.qz;if(z.i>=10){z.done=1;chk();bdg(1);sv();return R.res2()}
+V('<div class="card"><p><b>السؤال '+(z.i+1)+' من 10</b></p>'+pb('',z.i*10)+'<div id="stage" style="margin-top:12px"></div><div id="nx"></div></div>');var el=$('stage'),q=QZ[z.i];
+function nx(ok){if(ok)z.s++;$('nx').innerHTML='<div class="row"><button class="btn g" data-do="qnext">'+(z.i==9?'📊 عرض النتيجة':'➡️ التالي')+'</button></div>'}
+if(q[0]=='c')Q(el,q[1],null,nx,1);else if(q[0]=='m')conn(el,q[1],function(b){nx(!b)},null);else ordr(el,q[1],function(b){nx(!b)},null);animBars()}
+var F={start:function(){var n=$('n').value.trim();if(!n){$('hm').style.color='var(--bad)';$('hm').textContent='اكتبي اسمك أولاً يا بطلة ✏️';$('n').focus();return}S.raw=n;S.rc=$('c').value.trim()||'—';S.rd=$('d').value.trim()||'—';S.name=esc(n);S.cls=esc($('c').value.trim()||'—');S.date=esc($('d').value.trim()||'—');$('wel').style.display='none';$('app').style.display='block';$('chip').textContent='👧 '+n;if(TCH&&!TB.some(function(t){return t[0]=='tch'}))TB.push(['tch','📋 لوحة المعلمة']);$('tabs').innerHTML=TB.map(function(t){return '<button data-go="'+t[0]+'">'+t[1]+'</button>'}).join('');go('home');sv()},
+tch:function(){if(!S.name){S.name='المعلمة';S.raw='المعلمة'}$('wel').style.display='none';$('app').style.display='block';$('chip').textContent='👩‍🏫 المعلمة';if(!TB.some(function(t){return t[0]=='tch'}))TB.push(['tch','📋 لوحة المعلمة']);$('tabs').innerHTML=TB.map(function(t){return '<button data-go="'+t[0]+'">'+t[1]+'</button>'}).join('');go('tch')},
+csv:function(){var h=['الاسم','الفصل','النقاط','المهام','الأنشطة','الواجب','الاختبار','التقدم%'],rows=TR.map(function(r){return [r.name,r.cls,r.pts,r.tasks,r.acts,r.hw==null?'':r.hw,r.quiz==null?'':r.quiz,r.prog].map(function(c){return '"'+String(c==null?'':c).replace(/"/g,'""')+'"'}).join(',')});claude.use('downloads').then(function(d){if(!d)return toast('التنزيل غير متاح');d.save({filename:'results.csv',data:'\ufeff'+[h.join(',')].concat(rows).join('\n')}).catch(function(){})})},
+act:function(a){openAct(a)},
+st:function(d){si=Math.max(0,Math.min(5,si+(+d)));R.learn()},
+hint:function(){$('ht').style.display='block'},
+say:function(){var s=LS[si];if('speechSynthesis' in window){speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(s[0]+'. '+s[2]);u.lang='ar-SA';speechSynthesis.speak(u)}else toast('🔊 الصوت غير متاح على هذا الجهاز')},
+lon:function(){las=1;$('laser').style.display='block';toast('🔴 حرّكي إصبعك أو الفأرة لتوجيه الانتباه')},
+loff:function(){las=0;$('laser').style.display='none'},
+qstart:function(){S.qz={i:0,s:0,done:0};qrun()},
+qnext:function(){S.qz.i++;qrun()},
+hws:function(){var K=[1,0,0,0],g=0,r='';HQ.forEach(function(q,i){var v=$('h'+i).value,ok=v!==''&&+v==q[2];if(ok)g++;r+='<p>'+(ok?'✅':'❌')+' '+q[0]+(ok?'':' — الصحيح: '+q[1][q[2]])+'</p>'});var t=$('ht5').value.trim();if(t.length>1){g++;r+='<p>✅ كتبتِ إجابتك الحرة</p>'}else r+='<p>❌ لم تكتبي إجابة السؤال الأخير</p>';S.hw={g:g,r:r};fb(1,'','hw');R.hw()},
+hwr:function(){S.hw=null;S.hwT=0;R.hw()}};
+var HQ=[['الصخور في الطبيعة:',['كلها متشابهة','مختلفة في الشكل واللون'],1],['بماذا تُمزج التربة الطينية؟',['الماء','الزيت'],0],['الأداة التي نشكّل بها الطين:',['الدفرة','المسطرة'],0],['نشاهد الصخور الفضائية في:',['المتحف الوطني بالرياض','البحر'],0]];
+function sv(){if(!DB||!UID||!S.raw)return;clearTimeout(sT);sT=setTimeout(function(){DB.doc('results/'+UID).set({name:S.raw,cls:S.rc,date:S.rd,pts:S.pts,tasks:tdone(),acts:actN(),seen:seenN(),hw:S.hw?S.hw.g:null,quiz:S.qz&&S.qz.done?S.qz.s:null,prog:allP(),at:Date.now()}).then(function(){$('sv').textContent='☁️ تم الحفظ'}).catch(function(){$('sv').textContent='⚠️ لم يُحفظ'})},1500)}
+function drawT(){var t=$('tt');if(!t)return;$('tn').textContent='عدد الطالبات: '+TR.length;var th='style="padding:6px;border-bottom:2px solid var(--pur)"';t.innerHTML='<tr>'+['الاسم','الفصل','النقاط','المهام','الأنشطة','الواجب','الاختبار','التقدم'].map(function(h){return '<th '+th+'>'+h+'</th>'}).join('')+'</tr>'+TR.map(function(r){return '<tr>'+[r.name,r.cls,r.pts,(r.tasks||0)+'/4',(r.acts||0)+'/9',r.hw==null?'—':r.hw+'/5',r.quiz==null?'—':r.quiz+'/10',(r.prog||0)+'%'].map(function(c){return '<td style="padding:6px;border-bottom:1px solid var(--soft)">'+esc(String(c==null?'':c))+'</td>'}).join('')+'</tr>'}).join('')}
+var R={tch:function(){V('<div class="card"><h2>📋 لوحة المعلمة</h2><p id="tn">جارٍ التحميل…</p><div class="row"><button class="btn g" data-do="csv">⬇️ تنزيل النتائج CSV</button></div><div style="overflow-x:auto"><table id="tt" style="width:100%;border-collapse:collapse;font-size:.85em"></table></div></div>');if(!DB){$('tn').textContent='قاعدة البيانات غير متاحة';return}var to=setTimeout(function(){$('tn').textContent='تعذّر التحميل'},10000);if(TU)TU();TU=DB.collection('results').onSnapshot(function(s){clearTimeout(to);TR=s.docs.map(function(d){return d.data()}).sort(function(a,b){return (b.at||0)-(a.at||0)});drawT()},function(){clearTimeout(to);$('tn').textContent='لا تملكين صلاحية قراءة النتائج'})},
+home:function(){V('<div class="card"><div class="big">🏺</div><h2>أهلاً بكِ يا '+S.name+' 🌷</h2><p>📘 الدرس: التشكيل بالطين<br>🎨 المادة: التربية الفنية<br>🏫 الصف: الأول الابتدائي — الفصل: '+S.cls+'<br>👩‍🏫 المعلمة: فاطمه الشهراني<br>🏠 المدرسة: ابتدائية عفراء للطفولة المبكرة<br>📅 '+S.date+'</p>'+pb('تقدّمك',allP())+'</div><div class="grid">'+TB.slice(1).map(function(t){return '<button class="tile" data-go="'+t[0]+'">'+t[1]+'</button>'}).join('')+'</div>');animBars()},
+learn:function(){var s=LS[si];S.seen[si]=1;chk();bdg(1);sv();V('<div class="card"><div class="row"><button class="btn" data-do="lon">🔴 تشغيل الليزر</button><button class="btn s" data-do="loff">⚪ إيقاف الليزر</button></div><p style="text-align:center"><b>المرحلة '+(si+1)+' من 6</b></p>'+pb('',Math.round((si+1)/6*100))+'<div class="big">'+s[1]+'</div><h2>'+s[0]+'</h2><p>'+s[2]+'</p><p><small>'+s[3]+'</small></p><p id="ht" style="display:none;background:var(--soft);padding:8px;border-radius:12px">💡 '+s[4]+'</p><div class="row"><button class="btn s" data-do="hint">💡 تلميح</button><button class="btn s" data-do="say">🔊 تشغيل الصوت</button></div><div class="card" id="lq"></div><div class="row"><button class="btn" data-do="st" data-a="-1">⬅️ السابق</button><button class="btn" data-do="st" data-a="1">➡️ التالي</button></div>'+(si==5?'<div class="row"><button class="btn g" data-go="tasks">🎯 إلى المهام</button></div>':'')+'</div>');Q($('lq'),s[5],'l'+si);animBars()},
+tasks:function(){V('<div class="card"><h2>🎯 مهامي</h2><p><b>أنجزتِ '+tdone()+' من 4 مهام</b></p>'+pb('',tdone()*25)+TS.map(function(t,i){var st=tst(i);return '<div class="card" style="margin:8px 0">'+['🔒 لم تبدأ','🟡 قيد التنفيذ','✅ مكتملة'][st]+' — 🎯 المهمة '+(i+1)+': '+t[0]+(st==2?' ⭐':'')+'</div>'}).join('')+'<div class="row"><button class="btn" data-go="learn">📚 الشرح</button><button class="btn" data-go="acts">🎮 الأنشطة</button><button class="btn" data-go="hw">📝 الواجب</button><button class="btn" data-go="quiz">🧠 الاختبار</button></div></div>');animBars()},
+hw:function(){if(S.hw){V('<div class="card"><h2>✅ تم تسليم الواجب بنجاح</h2><div class="big">📬</div><p><b>درجتك يا '+S.name+': '+S.hw.g+' / 5</b></p>'+S.hw.r+'<div class="row"><button class="btn" data-do="hwr">🔄 إعادة المحاولة</button><button class="btn g" data-go="res">📊 عرض النتيجة</button></div></div>');return}
+V('<div class="card"><h2>📝 واجب: التشكيل بالطين</h2><p><b>التعليمات:</b> اختاري الإجابة الصحيحة، ثم اكتبي إجابتك في المكان المخصص.</p><p><b>الدرجة:</b> 5</p>'+HQ.map(function(q,i){return '<p class="q">'+(i+1)+'. '+q[0]+'</p><select id="h'+i+'" onchange="S.hwT=1"><option value="">اختاري…</option>'+q[1].map(function(o,j){return '<option value="'+j+'">'+o+'</option>'}).join('')+'</select>'}).join('')+'<p class="q">5. اكتبي اسم شيء تحبين أن تشكّليه بالطين:</p><textarea id="ht5" rows="3" placeholder="اكتبي هنا…" oninput="S.hwT=1"></textarea><div class="row"><button class="btn g" data-do="hws">📤 تسليم</button></div></div>')},
+acts:function(){V('<div class="card"><h2>🎮 الأنشطة التفاعلية</h2><p>أنجزتِ '+actN()+' من 9 أنشطة</p><div class="grid">'+AC.map(function(a){return '<button class="tile" data-do="act" data-a="'+a[0]+'"><div style="font-size:2em">'+a[1]+'</div>'+a[2]+(S.act[a[0]]?' ✅':'')+'</button>'}).join('')+'</div></div>')},
+quiz:function(){if(S.qz&&S.qz.done)return R.res2();V('<div class="card"><div class="big">🧠</div><h2>الاختبار</h2><p>عشرة أسئلة متنوعة، ولكل سؤال محاولة واحدة. بالتوفيق يا '+S.name+'!</p><div class="row"><button class="btn g" data-do="qstart">🚀 ابدئي الاختبار</button></div></div>')},
+res2:function(){var s=S.qz.s,p=s*10,lv=p>=90?'ممتاز 🌟':p>=75?'جيد جداً 👍':p>=50?'جيد 🙂':'يحتاج إلى مراجعة 🌱';V('<div class="card" style="text-align:center"><div class="big">'+(p>=90?'🏆':'🎖️')+'</div><h2>نتيجة الاختبار</h2><p>🌟 الطالبة: '+S.name+'<br>📊 الدرجة: '+s+' / 10<br>📈 النسبة: '+p+'%<br>🏆 المستوى: '+lv+'</p><div class="row"><button class="btn" data-do="qstart">🔄 إعادة المحاولة</button><button class="btn g" data-go="res">📊 عرض النتيجة</button><button class="btn s" data-go="home">🏠 الرئيسية</button></div></div>')},
+res:function(){var q=S.qz&&S.qz.done?S.qz.s:null,h=S.hw?S.hw.g:null,den=(q!==null?10:0)+(h!==null?5:0),fin=den?Math.round(((q||0)+(h||0))/den*100):0,ap=allP();V('<div class="card"><h2>🏆 نتيجتي — '+S.name+'</h2><p>⭐ النقاط: '+S.pts+'<br>🎯 المهام المكتملة: '+tdone()+' / 4<br>📝 درجة الواجب: '+(h===null?'لم يُسلَّم':h+' / 5')+'<br>🧠 درجة الاختبار: '+(q===null?'لم يبدأ':q+' / 10')+'<br>🏆 الدرجة النهائية: '+(den?(q||0)+(h||0)+' / '+den+' ('+fin+'%)':'—')+'</p>'+pb('📊 نسبة الإنجاز',ap)+'<p style="background:var(--soft);border-radius:16px;padding:12px">رائع يا '+S.name+'!<br>لقد قطعتِ شوطاً رائعاً في رحلة التعلم 🌟</p><h2>🏅 إنجازاتي</h2>'+badges()+'<div class="row"><button class="btn" data-go="quiz">🔄 إعادة الاختبار</button><button class="btn s" data-go="home">🏠 الرئيسية</button></div></div>');animBars()},
+fbk:function(){V('<div class="card"><h2>💡 التغذية الراجعة</h2><p>إجابات صحيحة: '+S.ok+' — محاولات للتحسين: '+S.no+'</p><p style="background:var(--soft);padding:10px;border-radius:14px">'+(S.no>S.ok?'💪 راجعي الشرح يا '+S.name+' ثم جرّبي الأنشطة من جديد.':S.ok?'🌟 أداء جميل يا '+S.name+'! استمري.':'ابدئي بالشرح والأنشطة لتظهر ملاحظاتك هنا.')+'</p>'+(S.log.length?S.log.map(function(l){return '<div class="card" style="margin:6px 0">'+(l[0]?'✅ ':'💡 ')+l[1]+'</div>'}).join(''):'<p>لا توجد ملاحظات بعد.</p>')+'<div class="row"><button class="btn" data-go="learn">📚 مراجعة الشرح</button></div></div>')},
+prog:function(){V('<div class="card"><h2>📊 تقدّمي</h2>'+pb('📚 الشرح',Math.round(seenN()/6*100))+pb('🎯 المهام',tdone()*25)+pb('🎮 الأنشطة',Math.round(actN()/9*100))+pb('📝 الواجب',S.hw?100:0)+pb('🧠 الاختبار',S.qz&&S.qz.done?100:0)+pb('⭐ الإجمالي',allP())+'<h2>🏅 الشارات</h2>'+badges()+'</div>');animBars()}};
+document.addEventListener('click',function(e){var g=e.target.closest('[data-go]');if(g)return go(g.dataset.go);var d=e.target.closest('[data-do]');if(d)F[d.dataset.do](d.dataset.a)});
+document.addEventListener('pointermove',function(e){if(las){var l=$('laser');l.style.left=e.clientX+'px';l.style.top=e.clientY+'px'}});
+document.addEventListener('pointerdown',function(e){if(las){var l=$('laser');l.style.left=e.clientX+'px';l.style.top=e.clientY+'px'}});
+(async function(){try{var us=window.claude&&await claude.use('user');if(us){UID=await us.id();TCH=await us.isOwner()}DB=window.claude&&await claude.use('db')}catch(e){}
+if(TCH)$('tcw').innerHTML='<button class="btn o" data-do="tch">👩‍🏫 دخول المعلمة (لوحة النتائج)</button>';
+$('dbs').textContent=DB&&UID?'☁️ سيتم حفظ نتيجتك تلقائياً':'ℹ️ يعمل التطبيق، لكن حفظ النتيجة يحتاج تسجيل الدخول'})();
+</script>
+</body>
+</html>
